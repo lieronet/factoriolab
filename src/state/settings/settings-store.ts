@@ -401,9 +401,6 @@ export class SettingsStore extends Store<SettingsState> {
           ? new Set(p.researchedTechnologies)
           : undefined,
         recipeProductivity: toRationalRecord(p.recipeProductivity),
-        buildingMiningMultiplier: rational(
-          coalesce(p.buildingMiningMultiplier, m.buildingMiningMultiplier),
-        ),
       };
     }
 
@@ -411,7 +408,6 @@ export class SettingsStore extends Store<SettingsState> {
     let beacons: BeaconSettings[] = [];
     let moduleRank: string[] | undefined;
     let overclock: Rational | undefined;
-    let buildingMiningMultiplier: Rational | undefined;
     switch (modInfo.game) {
       case 'factorio': {
         moduleRank = preset === Preset.Minimum ? undefined : m.moduleRank;
@@ -439,7 +435,6 @@ export class SettingsStore extends Store<SettingsState> {
       }
       case 'dyson-sphere-program': {
         moduleRank = preset === Preset.Beacon8 ? m.moduleRank : undefined;
-        buildingMiningMultiplier = rational(100n);
         break;
       }
       case 'satisfactory': {
@@ -465,7 +460,6 @@ export class SettingsStore extends Store<SettingsState> {
       moduleRankIds: coalesce(moduleRank, []),
       beacons,
       overclock,
-      buildingMiningMultiplier,
       miningBonus: rational(m.miningBonus),
       researchBonus: rational(m.researchBonus),
       researchProductivity: rational(m.researchProductivity),
@@ -904,7 +898,6 @@ export class SettingsStore extends Store<SettingsState> {
     let stack = rational.one;
     const inserterBonus: Partial<Record<string, Rational>> = {};
     let miningBonus = rational.zero;
-    let buildingMiningMultiplier = rational.zero;
     let researchBonus = rational.zero;
     let researchProductivity = rational.zero;
     researchedTechnologyIds.forEach((techId) => {
@@ -947,9 +940,6 @@ export class SettingsStore extends Store<SettingsState> {
 
     if (defaults?.miningBonus?.gt(miningBonus))
       miningBonus = defaults.miningBonus;
-    if (defaults?.buildingMiningMultiplier?.gt(buildingMiningMultiplier)) {
-      buildingMiningMultiplier = defaults.buildingMiningMultiplier;
-    }
     if (defaults?.researchBonus?.gt(researchBonus))
       researchBonus = defaults.researchBonus;
     if (defaults?.researchProductivity?.gt(researchProductivity))
@@ -1094,10 +1084,6 @@ export class SettingsStore extends Store<SettingsState> {
       beacons: this.hydration.hydrateBeacons(state.beacons, defaultBeacons),
       overclock: state.overclock ?? defaults?.overclock,
       miningBonus: coalesce(state.miningBonus, miningBonus),
-      buildingMiningMultiplier: coalesce(
-        state.buildingMiningMultiplier,
-        buildingMiningMultiplier,
-      ),
       researchBonus: coalesce(state.researchBonus, researchBonus),
       inserterBonus,
       researchProductivity: coalesce(

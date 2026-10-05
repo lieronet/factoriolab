@@ -20,7 +20,6 @@ export interface Settings extends SettingsState {
   moduleRankIds: string[];
   defaultModuleRankIds: string[];
   miningBonus: Rational;
-  buildingMiningMultiplier: Rational;
   researchBonus: Rational;
   researchProductivity: Rational;
   inserterBonus: Partial<Record<string, Rational>>;

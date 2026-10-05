@@ -27,7 +27,6 @@
     "chemical-plant",
     "matrix-lab"
   ],
-  "buildingMiningMultiplier": 1,
   "moduleRank": ["proliferator-3-products"],
   "fuelRank": ["coal"],
   "minBeltRank": ["conveyor-belt-1"],

@@ -37,7 +37,6 @@ export interface BaseDefaultsJson {
   moduleRank?: string[];
   beaconModule?: string;
   miningBonus?: string | number;
-  buildingMiningMultiplier?: string | number;
   researchBonus?: string | number;
   researchProductivity?: string | number;
   researchedTechnologies?: string[];

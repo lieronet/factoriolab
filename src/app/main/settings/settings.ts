@@ -134,7 +134,6 @@ export class Settings {
   protected readonly miningSpeed = computed(() =>
     this.settings().miningBonus.add(rational(100n)),
   );
-
   protected readonly addMachineValue = signal<string | null>(null);
 
   protected readonly CostSettingsDialog = CostSettingsDialog;

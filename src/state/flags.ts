@@ -1,6 +1,5 @@
 export type Flag =
   | 'beltStack'
-  | 'buildingMiningMultiplier'
   | 'consumptionAsDrain'
   | 'duplicators'
   | 'hideMachineSettings'
