@@ -31,6 +31,7 @@ export interface SettingsState {
   beaconReceivers?: Rational;
   proliferatorSprayId: string;
   miningBonus?: Rational;
+  buildingMiningMultiplier?: Rational;
   researchBonus?: Rational;
   researchProductivity?: Rational;
   researchedTechnologyIds?: Set<string>;

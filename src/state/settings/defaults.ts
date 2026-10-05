@@ -14,6 +14,7 @@ export interface Defaults {
   beacons: BeaconSettings[];
   overclock?: Rational;
   miningBonus?: Rational;
+  buildingMiningMultiplier?: Rational;
   researchBonus?: Rational;
   researchProductivity?: Rational;
   researchedTechnologyIds?: Set<string>;

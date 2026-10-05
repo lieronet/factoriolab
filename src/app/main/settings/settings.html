@@ -595,6 +595,7 @@
 
   @if (
     data().flags.has('miningSpeed') ||
+    data().flags.has('buildingMiningMultiplier') ||
     data().flags.has('miningProductivity') ||
     data().flags.has('researchSpeed') ||
     data().prodUpgradeTechIds.length
@@ -616,6 +617,30 @@
               "
               (valueReset)="settingsStore.apply({ miningBonus: undefined })"
             ></lab-input-number>
+          </lab-form-field>
+        }
+
+        @if (data().flags.has('buildingMiningMultiplier')) {
+          <!-- label is a key/value in the lang files -->
+          <!-- <lab-form-field label="settings.buildingMiningMultiplier"> -->
+          <lab-form-field label="Advanced Miner Speed">
+            <lab-input-number
+              [percent]="true"
+              [buttons]="true"
+              [minimum]="rational(10)"
+              [maximum]="rational(300)"
+              [step]="rational(10)"
+              labTooltip="settings.miningSpeedTooltip"
+              labTooltipPosition="adjacent"
+              [ngModel]="settings().buildingMiningMultiplier"
+              (ngModelChange)="
+                settingsStore.apply({ buildingMiningMultiplier: $event })
+              "
+              (valueReset)="
+                settingsStore.apply({ buildingMiningMultiplier: undefined })
+              "
+            >
+            </lab-input-number>
           </lab-form-field>
         }
 
